@@ -3,7 +3,7 @@ import Image from "next/image";
 export function Hero({children}) {
 
     return (
-        <div className="relative shadow-xl sm:overflow-hidden">
+        <div className="relative sm:overflow-hidden">
             {/* <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100" /> */}
             <div className="absolute inset-0">
             <Image
