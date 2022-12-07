@@ -13,5 +13,15 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'frontend-case-api.sbdev.nl',
+        port: '',
+        pathname: '/storage/**',
+      },
+    ],
+  },
 };
 export default config;
