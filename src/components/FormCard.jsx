@@ -1,7 +1,7 @@
 export function FormCard() {
     return(
-        <form>
-          <div className="w-1/2 bg-white p-6">
+        <form className="w-1/2">
+          <div className="bg-white p-6">
             <div>
               <h3 className="text-lg font-medium leading-6 text-gray-900">Plaats een blog bericht</h3>
             </div>

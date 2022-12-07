@@ -1,7 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Hero } from "../components/Hero";
-import { FormCard } from "../components/FormCard"
+import { FormCard } from "../components/FormCard";
+import { PostList } from "../components/PostList";
 
 
 
@@ -21,7 +22,10 @@ const Home: NextPage = () => {
                 Hello <span className="text-[hsl(280,100%,70%)]">Everyone</span>
               </h1>
             </Hero>
-            <FormCard/>
+            <div className="flex flex-row">
+              <FormCard/>
+              <PostList/>
+            </div>
             <div className="flex flex-col items-center justify-center gap-12 px-4 py-16 ">
               test
             </div>
