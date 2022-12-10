@@ -1,82 +1,74 @@
+import { CategoryDropdown } from "./CategoryDropdown";
+import { FiCamera } from "react-icons/fi"
+
 export function FormCard() {
     return(
-        <form className="w-1/2">
-          <div className="bg-white p-6">
+        <form className="w-2/5">
+          <div className="bg-white m-2.5 p-6 h-[659px]">
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Plaats een blog bericht</h3>
+              <h3 className="mb-6	text-title font-bold text-gray-900">Plaats een blog bericht</h3>
             </div>
-            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              <div className="sm:col-span-6">
-                <label htmlFor="berichtnaam" className="block text-sm font-medium text-gray-700">
+            <div className="grid gap-y-6 grid-cols-6">
+              {/* Berichtnaam */}
+              <div className="col-span-6">
+                <label htmlFor="berichtnaam" className="block text-xxs font-medium text-gray-700">
                   Berichtnaam
                 </label>
-                <div className="mt-1">
+                <div className="mt-[7px]">
                   {/* <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm"/> */}
                   <input
                     type="text"
                     name="berichtnaam"
                     id="berichtnaam"
                     autoComplete="berichtnaam"
-                    className="block w-full h-10 border-gray-300 shadow-sm bg-gray-50 sm:text-sm"
+                    className="block w-full h-10 pl-[18px] py-3 border-gray-300 shadow-sm bg-gray-50 text-xxs font-medium"
+                    placeholder="Geen titel"
                   />
                 </div>
               </div>
-
-              <div className="sm:col-span-6">
-              <label htmlFor="categorie" className="block text-sm font-medium text-gray-700">
-                Categorie
-              </label>
-              <div className="mt-1">
-                <select
-                  id="categorie"
-                  name="categorie"
-                  autoComplete="categorie"
-                  className="block w-full h-10 border-gray-300 shadow-sm bg-gray-50 sm:text-sm"
-                >
-                  <option>Fun</option>
-                </select>
-              </div>
-            </div>
-
-              <div className="sm:col-span-6">
-                <label htmlFor="photo" className="block text-sm font-medium text-gray-700">
+              {/* Categorie */}
+              <CategoryDropdown/>
+              {/* Afbeelding */}
+              <div className="col-span-6">
+                <label htmlFor="photo" className="block text-xxs font-medium text-gray-700">
                   Header afbeelding
                 </label>
-                <div className="mt-1 flex items-center">
-                  <p> cam</p>
+                <div className="mt-[7px] w-fit h-12 flex items-center bg-gray-50">
+                  <FiCamera className="mx-4 my-[18px]" />
                   <button
                     type="button"
-                    className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50"
+                    className="h-6 w-20 my-3 mr-[18px] rounded-[18px] border border-transparent bg-gray-600 font-thin text-[9px] text-white shadow-sm"
                   >
                     Kies bestand
                   </button>
                 </div>
               </div>
-
-              <div className="sm:col-span-6">
-                <label htmlFor="about" className="block text-sm font-medium text-gray-700">
+              {/* Bericht */}
+              <div className="col-span-6">
+                <label htmlFor="about" className="block text-xxs font-medium text-gray-700">
                   Bericht
                 </label>
-                <div className="mt-1">
+                <div className="mt-[7px]">
                   <textarea
                     id="bericht"
                     name="bericht"
-                    className="block w-full h-52 border-gray-300 shadow-sm bg-gray-50 sm:text-sm"
+                    className="block w-full h-[214px] border-gray-300 shadow-sm bg-gray-50 sm:text-sm"
                     defaultValue={''}
                   />
                 </div>
               </div>
-
-              <div className="sm:col-span-4 sm:col-start-2">
-                  <button
-                    // type="submit"
-                    className="inline-flex w-48 justify-center rounded-md border border-transparent bg-orange py-2 px-4 text-sm font-medium text-white shadow-sm"
-                  >
-                    Bericht aanmaken
-                  </button>
-                </div>
-
             </div>
+
+            {/* Button */}
+            <div className="flex flex-col items-center">
+              <button
+                // type="submit"
+                className="h-8 w-48 mt-6 rounded-[18px] border border-transparent bg-orange text-xxs text-white shadow-sm"
+              >
+                Bericht aanmaken
+              </button>
+            </div>
+
           </div>
         </form>
         );
