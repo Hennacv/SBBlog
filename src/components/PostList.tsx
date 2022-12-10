@@ -20,7 +20,7 @@ type Post = {
     }
 }
 
-const getPosts = async ({ pageCount = 1 }) => await ky.get(`https://frontend-case-api.sbdev.nl/api/posts?page=${pageCount}&perPage=4&sortBy=title&sortDirection=desc`, {
+const getPosts = async ({ pageCount = 1 }) => await ky.get(`https://frontend-case-api.sbdev.nl/api/posts?page=${pageCount}&perPage=4&sortBy=title&sortDirection=asc`, {
     headers: {
         'content-type': 'application/json',
         "token": TOKEN
@@ -55,14 +55,14 @@ export function PostList() {
         <div className="bg-white m-2.5 p-6">
             <div className="grid gap-6 lg:grid-cols-2">
                 {posts.map((post) => (
-                    <div key={post.id} className="flex flex-col overflow-hidden shadow-bl w-48">
-                        <div className="relative max-16 text-[8px] bg-orange text-white italic">
+                    <div key={post.id} className="flex flex-col overflow-hidden shadow-bl w-[200px]">
+                        <div className="relative text-[8px] text-white italic">
                             <Image
-                            className="w-full object-contain"
+                            className="h-[72px] w-full object-cover"
                             src={apiEndpoint + post.img_url}
                             alt=""
-                            width={500}
-                            height={500}
+                            width={200}
+                            height={72}
                             />
                             <p className="absolute bottom-0 left-0 mb-2 ml-4">{post.created_at.slice(0,10)}</p>
                             <p className="absolute bottom-0 right-0 mb-2 mr-4">{post.category.name}</p>
