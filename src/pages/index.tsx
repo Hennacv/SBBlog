@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Hero } from "../components/Hero";
 import { FormCard } from "../components/FormCard";
 import { PostList } from "../components/PostList";
+import { Logo } from "../components/Logo";
 
 
 
@@ -18,9 +19,12 @@ const Home: NextPage = () => {
         <div className="relative ">
           <div className="mx-auto container bg-gray-100">
             <Hero>
-              <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+              {/* <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-[5rem]">
                 Hello <span className="text-[hsl(280,100%,70%)]">Everyone</span>
-              </h1>
+              </h1> */}
+              <div className="absolute w-44 left-5 top-3 sm:w-full sm:left-[42px] sm:top-6">
+                <Logo />
+              </div>
             </Hero>
             <div className="flex flex-row">
               <FormCard/>
