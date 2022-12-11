@@ -5,6 +5,7 @@ import { FormCard } from "../components/FormCard";
 import { PostList } from "../components/PostList";
 import { Logo } from "../components/Logo";
 import { NavList } from "../components/NavList";
+import { Footer } from "../components/Footer";
 
 
 
@@ -29,12 +30,10 @@ const Home: NextPage = () => {
               <FormCard/>
               <PostList/>
             </div>
-            <div className="flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              test
-            </div>
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };
