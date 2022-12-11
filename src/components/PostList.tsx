@@ -31,10 +31,10 @@ export function PostList() {
 
     const [currentPage, setCurrentPage] = useState(1);
 
-    const { isLoading, isError, data, error } = useQuery({
-        queryKey: ['posts'],
-        queryFn: () => getPosts({ pageCount: currentPage }),
-        })
+    const { isLoading, isError, data, error } = useQuery([`posts-${currentPage}`],
+         () => getPosts({ pageCount: currentPage }), {
+        refetchOnWindowFocus: false,
+    });
 
     if (isLoading) {
     return <span>Be patient please...</span>
@@ -48,11 +48,13 @@ export function PostList() {
         setCurrentPage(currentPage + 1);
     };
 
+    console.log({ isLoading })
+
     const posts: Post[] = (data as any).data;
 
     return (
-        <div className="bg-white m-2.5 p-6 h-[659px]">
-            <div className="grid gap-6 lg:grid-cols-2">
+        <div className="bg-white p-6 h-fit">
+            <div className="grid gap-6 justify-items-center xs:grid-cols-2">
                 {posts.map((post) => (
                     <div key={post.id} className="flex flex-col overflow-hidden shadow-bl w-[200px]">
                         <div className="relative text-[8px] text-white italic">
@@ -78,7 +80,7 @@ export function PostList() {
                     onClick={addPage}
                     className="h-8 w-48 mt-6 rounded-[18px] border border-transparent bg-orange text-xxs text-white shadow-sm"
                     >
-                    Meer laden
+                    {isLoading ? 'Loading' : 'Meer laden'}
                 </button>
             </div>
         </div>

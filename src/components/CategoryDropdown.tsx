@@ -28,10 +28,10 @@ const getCategories = async () => await ky.get(`https://frontend-case-api.sbdev.
 
 export function CategoryDropdown() {
 
-    const { isLoading, isError, data, error } = useQuery({
-        queryKey: ['categories'],
-        queryFn: getCategories,
-        })
+    const { isLoading, isError, data, error } = useQuery(['categories'], getCategories,
+        {
+        refetchOnWindowFocus: false,
+    })
 
     const categories = data as Categories[];
     // const [selected, setSelected] = useState(categories)

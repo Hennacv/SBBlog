@@ -4,7 +4,7 @@ import { FiCamera } from "react-icons/fi"
 export function FormCard() {
     return(
         <form>
-          <div className="bg-white m-2.5 p-6 h-[659px]">
+          <div className="bg-white p-6 h-fit">
             <div>
               <h3 className="mb-6	text-title font-bold text-gray-900">Plaats een blog bericht</h3>
             </div>

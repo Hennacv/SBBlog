@@ -25,7 +25,7 @@ const Home: NextPage = () => {
               </div>
               <NavList />
             </Hero>
-            <div className="grid lg:grid-cols-2">
+            <div className="grid gap-[24px] p-6 xs:p-[49.5px] lg:grid-cols-2">
               <FormCard/>
               <PostList/>
             </div>

@@ -21,7 +21,8 @@ module.exports = {
     },
     extend: {
       screens: {
-        'xs': '400px'
+        'xxs': '400px',
+        'xs': '570px'
       },
       fontFamily: {
         sans: ['var(--font-proxima)']

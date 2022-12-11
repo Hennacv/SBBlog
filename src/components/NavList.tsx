@@ -21,7 +21,7 @@ export function NavList() {
   const { pathname } = useRouter()
 
   return(
-      <div className="grid grid-flow-col gap-x-5 xs:gap-x-8 absolute right-11 top-6 sm:top-[51px] ">
+      <div className="grid grid-flow-col gap-x-5 xxs:gap-x-8 absolute right-11 top-6 sm:top-[51px] ">
         {navigation.map((link) => {
           const isCurrentPage = link.href === pathname;
 
