@@ -51,7 +51,7 @@ export function PostList() {
     const posts: Post[] = (data as any).data;
 
     return (
-        <div className="bg-white m-2.5 p-6 w-1/2 h-[659px]">
+        <div className="bg-white m-2.5 p-6 h-[659px]">
             <div className="grid gap-6 lg:grid-cols-2">
                 {posts.map((post) => (
                     <div key={post.id} className="flex flex-col overflow-hidden shadow-bl w-[200px]">

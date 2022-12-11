@@ -20,6 +20,9 @@ module.exports = {
       'orange' : '#F27623'
     },
     extend: {
+      screens: {
+        'xs': '400px'
+      },
       fontFamily: {
         sans: ['var(--font-proxima)']
       },
@@ -29,6 +32,7 @@ module.exports = {
       fontSize: {
         xxs: ['12px', '15px'],
         xs: ['12px', '19px'],
+        navItem: ['18px', '22px'],
         title: ['24px', '29px'],
       }
     },
