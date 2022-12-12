@@ -5,9 +5,25 @@ import { Hero } from "../components/Hero";
 import { Logo } from "../components/Logo";
 import { NavList } from "../components/NavList";
 import { PostList } from "../components/PostList";
+import { Pagination } from "../components/Pagination";
+import { Title } from "../components/Title";
+import { usePosts } from "../hooks/getPosts";
+import { useRouter } from "next/router";
+
+function getCurrentPage(query: any) {
+  if (query.hasOwnProperty("page") && !Array.isArray(query.page) && !isNaN(parseInt(query.page))) {
+    return parseInt(query.page);
+  }
+  return 1;
+}
 
 
 const About: NextPage = () => {
+  const { query } = useRouter();
+  const currentPage = getCurrentPage(query);
+  const posts = usePosts({ pageCount: currentPage, itemCount: 8 })
+
+
   return (
     <>
       <Head>
@@ -23,13 +39,18 @@ const About: NextPage = () => {
                 <Logo />
               </div>
               <NavList />
+              <Title name="Blog"/>
             </Hero>
             <div className="p-6 xs:p-[49.5px]">
               <div className="bg-white p-6 h-fit">
                 <div className="grid gap-6 justify-items-center xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                  <PostList pageCount={1} itemCount={8} />
+                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/* @ts-ignore */}
+                  <PostList {...posts} />
                 </div>
-                {/* <Pagination /> */}
+                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/* @ts-ignore */}
+                <Pagination {...posts} />
               </div>
             </div>
           </div>

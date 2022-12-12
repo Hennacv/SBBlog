@@ -1,3 +1,5 @@
+import type { translations } from './utils/dictionary';
+
 export type Post = {
     id: number;
     category_id: number;
@@ -13,6 +15,11 @@ export type Post = {
     }
 }
 
+export type PostsRequest = {
+    pageCount?: number;
+    itemCount: number;
+}
+
 export type FormArticle = {
     title: string;
     content: string;
@@ -25,4 +32,10 @@ export type BlogArticle = {
     content: string;
     category_id: string;
     image: string;
+};
+
+export type Link = {
+    url: string | null;
+    label: keyof typeof translations & "...";
+    active: boolean;
 };

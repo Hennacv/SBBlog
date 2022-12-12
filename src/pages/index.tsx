@@ -8,11 +8,11 @@ import { Logo } from "../components/Logo";
 import { NavList } from "../components/NavList";
 import { Footer } from "../components/Footer";
 import { PageButton } from "../components/PageButton";
-
-
+import { usePosts } from "../hooks/getPosts";
 
 const Home: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const posts = usePosts({ pageCount: currentPage, itemCount: 4 })
 
   const addPage = () => {
     setCurrentPage(currentPage + 1);
@@ -38,7 +38,9 @@ const Home: NextPage = () => {
               <FormCard/>
               <div className="bg-white p-6 h-fit">
                 <div className="grid gap-6 justify-items-center xs:grid-cols-2">
-                  <PostList pageCount={1} itemCount={4} currentPage={currentPage} />
+                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/* @ts-ignore */}
+                  <PostList {...posts}  />
                 </div>
                 <PageButton addPage={addPage} />
               </div>

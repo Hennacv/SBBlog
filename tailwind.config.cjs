@@ -34,8 +34,10 @@ module.exports = {
       fontSize: {
         xxs: ['12px', '15px'],
         xs: ['12px', '19px'],
+        s: ['14px', '17px'],
         navItem: ['18px', '22px'],
         title: ['24px', '29px'],
+        xxl: ['48px', '58px'],
       }
     },
   },

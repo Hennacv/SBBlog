@@ -1,35 +1,18 @@
-import ky from 'ky';
-import { useQuery } from "@tanstack/react-query";
+import type { UseQueryResult } from '@tanstack/react-query';
 import Image from 'next/image';
-import type { Post } from "../types";
+import type { Post, Link } from "../types";
 
-type Props = {
-itemCount: number;
-pageCount?: number;
-currentPage?: number;
-}
-
-const TOKEN = process.env.NEXT_PUBLIC_BLOG_TOKEN;
 const apiEndpoint = process.env.NEXT_PUBLIC_HOSTNAME;
 
-type PostsRequest = {
-pageCount: number;
-itemCount: number;
-}
+type Props = UseQueryResult<{
+  isLoading: boolean;
+  isError: boolean;
+  error: Error;
+  data: Post[],
+  links: Link[],
+}>
 
-const getPosts = async ({ pageCount = 1, itemCount }: PostsRequest) => await ky.get(`https://frontend-case-api.sbdev.nl/api/posts?page=${pageCount}&perPage=${itemCount}&sortBy=title&sortDirection=asc`, {
-    headers: {
-        'content-type': 'application/json',
-        "token": TOKEN
-    }
-}).json();
-
-export function PostList({ itemCount, currentPage }: Props) {
-
-    const { isLoading, isError, data, error } = useQuery([`posts-${currentPage}`],
-         () => getPosts({ pageCount: currentPage, itemCount: itemCount }), {
-        refetchOnWindowFocus: false,
-    });
+export function PostList({ isLoading, isError, data, error }: Props) {
 
     if (isLoading) {
     return <span>Be patient please...</span>
@@ -39,22 +22,22 @@ export function PostList({ itemCount, currentPage }: Props) {
     return <span>Error: {(error as Error).message}</span>
     }
 
-    console.log({ isLoading })
-
-    const posts: Post[] = (data as any).data;
+    const posts: Post[] = data.data;
+    // const links = data.links;
+    // console.log({ links })
 
     return (
             <>
                 {posts.map((post) => (
                     <div key={post.id} className="flex flex-col overflow-hidden shadow-bl w-[200px]">
-                        <div className="relative text-[8px] text-white italic">
-                            <Image
-                            className="h-[72px] w-full object-cover"
-                            src={apiEndpoint + post.img_url}
-                            alt=""
-                            width={200}
-                            height={72}
-                            />
+                        <div className="relative text-[8px] text-white italic bg-black">
+                              <Image
+                              className="h-[72px] w-full object-cover opacity-80"
+                              src={apiEndpoint + post.img_url}
+                              alt=""
+                              width={200}
+                              height={72}
+                              />
                             <p className="absolute bottom-0 left-0 mb-2 ml-4">{post.created_at.slice(0,10)}</p>
                             <p className="absolute bottom-0 right-0 mb-2 mr-4">{post.category.name}</p>
                         </div>
