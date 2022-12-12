@@ -1,5 +1,6 @@
 import ky from 'ky';
 import { useQuery } from "@tanstack/react-query";
+import { useFormContext } from "react-hook-form";
 // import { Listbox, Transition } from "@headlessui/react"
 // import { HiCheck, HiChevronDown } from "react-icons/hi"
 // import { Fragment, useState } from 'react'
@@ -27,7 +28,7 @@ const getCategories = async () => await ky.get(`https://frontend-case-api.sbdev.
 //   }
 
 export function CategoryDropdown() {
-
+    const { register } = useFormContext();
     const { isLoading, isError, data, error } = useQuery(['categories'], getCategories,
         {
         refetchOnWindowFocus: false,
@@ -45,7 +46,7 @@ export function CategoryDropdown() {
     }
 
 
-    console.log({categories})
+    // console.log({categories})
 
     return(
     //     <Listbox value={selected} onChange={setSelected}>
@@ -93,8 +94,8 @@ export function CategoryDropdown() {
             <div className="mt-[7px]">
                 <select
                     id="categorie"
-                    name="categorie"
                     autoComplete="categorie"
+                    {...register("category_id", { required: true })}
                     className="block w-full h-10 px-[18px] py-3 border-gray-300 shadow-sm bg-gray-50 text-xxs font-medium"
                 >
                     <option>Geen categorie</option>

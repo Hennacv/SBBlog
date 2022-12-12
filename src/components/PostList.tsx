@@ -2,37 +2,33 @@ import ky from 'ky';
 import { useQuery } from "@tanstack/react-query";
 import { useState } from 'react';
 import Image from 'next/image';
+import type { Post } from "../types";
+
+type Props = {
+itemCount: number;
+pageCount: number;
+}
+
 const TOKEN = process.env.NEXT_PUBLIC_BLOG_TOKEN;
 const apiEndpoint = process.env.NEXT_PUBLIC_HOSTNAME;
 
-type Post = {
-    id: number;
-    category_id: number;
-    created_at: string;
-    updated_at: string;
-    img_url: string;
-    title: string;
-    content: string;
-    category: {
-        name: string;
-        created_at?: string;
-        updated_at?: string;
-    }
+type PostsRequest = {
+pageCount: number;
+itemCount: number;
 }
-
-const getPosts = async ({ pageCount = 1 }) => await ky.get(`https://frontend-case-api.sbdev.nl/api/posts?page=${pageCount}&perPage=4&sortBy=title&sortDirection=asc`, {
+const getPosts = async ({ pageCount = 1, itemCount }: PostsRequest) => await ky.get(`https://frontend-case-api.sbdev.nl/api/posts?page=${pageCount}&perPage=${itemCount}&sortBy=title&sortDirection=asc`, {
     headers: {
         'content-type': 'application/json',
         "token": TOKEN
     }
 }).json();
 
-export function PostList() {
+export function PostList({ itemCount }: Props) {
 
     const [currentPage, setCurrentPage] = useState(1);
 
     const { isLoading, isError, data, error } = useQuery([`posts-${currentPage}`],
-         () => getPosts({ pageCount: currentPage }), {
+         () => getPosts({ pageCount: currentPage, itemCount: itemCount }), {
         refetchOnWindowFocus: false,
     });
 

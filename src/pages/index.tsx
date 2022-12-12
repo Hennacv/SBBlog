@@ -28,7 +28,7 @@ const Home: NextPage = () => {
             </Hero>
             <div className="grid gap-[24px] p-6 xs:p-[49.5px] lg:grid-cols-2">
               <FormCard/>
-              <PostList/>
+              <PostList pageCount={1} itemCount={4}/>
             </div>
           </div>
         </div>

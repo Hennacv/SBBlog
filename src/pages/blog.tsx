@@ -25,7 +25,7 @@ const About: NextPage = () => {
               <NavList />
             </Hero>
             <div>
-              <PostList/>
+              <PostList pageCount={1} itemCount={16}/>
             </div>
           </div>
         </div>
