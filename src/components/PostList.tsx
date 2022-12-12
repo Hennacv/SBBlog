@@ -1,12 +1,12 @@
 import ky from 'ky';
 import { useQuery } from "@tanstack/react-query";
-import { useState } from 'react';
 import Image from 'next/image';
 import type { Post } from "../types";
 
 type Props = {
 itemCount: number;
-pageCount: number;
+pageCount?: number;
+currentPage?: number;
 }
 
 const TOKEN = process.env.NEXT_PUBLIC_BLOG_TOKEN;
@@ -16,6 +16,7 @@ type PostsRequest = {
 pageCount: number;
 itemCount: number;
 }
+
 const getPosts = async ({ pageCount = 1, itemCount }: PostsRequest) => await ky.get(`https://frontend-case-api.sbdev.nl/api/posts?page=${pageCount}&perPage=${itemCount}&sortBy=title&sortDirection=asc`, {
     headers: {
         'content-type': 'application/json',
@@ -23,9 +24,7 @@ const getPosts = async ({ pageCount = 1, itemCount }: PostsRequest) => await ky.
     }
 }).json();
 
-export function PostList({ itemCount }: Props) {
-
-    const [currentPage, setCurrentPage] = useState(1);
+export function PostList({ itemCount, currentPage }: Props) {
 
     const { isLoading, isError, data, error } = useQuery([`posts-${currentPage}`],
          () => getPosts({ pageCount: currentPage, itemCount: itemCount }), {
@@ -40,17 +39,12 @@ export function PostList({ itemCount }: Props) {
     return <span>Error: {(error as Error).message}</span>
     }
 
-    const addPage = () => {
-        setCurrentPage(currentPage + 1);
-    };
-
     console.log({ isLoading })
 
     const posts: Post[] = (data as any).data;
 
     return (
-        <div className="bg-white p-6 h-fit">
-            <div className="grid gap-6 justify-items-center xs:grid-cols-2">
+            <>
                 {posts.map((post) => (
                     <div key={post.id} className="flex flex-col overflow-hidden shadow-bl w-[200px]">
                         <div className="relative text-[8px] text-white italic">
@@ -70,16 +64,6 @@ export function PostList({ itemCount }: Props) {
                         </div>
                     </div>
                 ))}
-            </div>
-            <div className="flex flex-col items-center">
-                <button
-                    onClick={addPage}
-                    className="h-8 w-48 mt-6 rounded-[18px] border border-transparent bg-orange text-xxs text-white shadow-sm"
-                    >
-                    {isLoading ? 'Loading' : 'Meer laden'}
-                </button>
-            </div>
-        </div>
-
+            </>
     )
 }

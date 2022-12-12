@@ -24,8 +24,13 @@ const About: NextPage = () => {
               </div>
               <NavList />
             </Hero>
-            <div>
-              <PostList pageCount={1} itemCount={16}/>
+            <div className="p-6 xs:p-[49.5px]">
+              <div className="bg-white p-6 h-fit">
+                <div className="grid gap-6 justify-items-center xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                  <PostList pageCount={1} itemCount={8} />
+                </div>
+                {/* <Pagination /> */}
+              </div>
             </div>
           </div>
         </div>
