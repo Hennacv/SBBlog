@@ -1,11 +1,11 @@
 type Title = {
-    name: string,
-}
+  name: string;
+};
 
-export function Title({ name } : Title) {
-    return (
-        <div className="flex justify-center items-center h-full">
-            <p className="text-white text-xxl font-bold">{name}</p>
-        </div>
-        )
+export function Title({ name }: Title) {
+  return (
+    <div className="flex h-full items-center justify-center">
+      <p className="text-xxl font-bold text-white">{name}</p>
+    </div>
+  );
 }

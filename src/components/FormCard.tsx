@@ -16,17 +16,22 @@ export function FormCard() {
       formData.append("title", data.title);
       formData.append("content", data.content);
       formData.append("category_id", data.category_id);
-      formData.append("image", singleImage, "my-image")
+      formData.append("image", singleImage, "my-image");
       updateBlogPost.mutate(formData);
     }
   };
 
   return (
     <div>
-    <FormProvider {...methods}>
-      <form className="bg-white p-6 h-fit" onSubmit={methods.handleSubmit(onSubmit)}>
-          <h3 className="mb-6	text-title font-bold text-gray-900">Plaats een blog bericht</h3>
-          <div className="grid gap-y-6 grid-cols-6">
+      <FormProvider {...methods}>
+        <form
+          className="h-fit bg-white p-6"
+          onSubmit={methods.handleSubmit(onSubmit)}
+        >
+          <h3 className="mb-6	text-title font-bold text-gray-900">
+            Plaats een blog bericht
+          </h3>
+          <div className="grid grid-cols-6 gap-y-6">
             {/* Berichtnaam */}
             <div className="col-span-6">
               <label className="block text-xxs font-medium text-gray-700">
@@ -37,7 +42,7 @@ export function FormCard() {
                   type="text"
                   id="title"
                   autoComplete="title"
-                  className="block w-full h-10 pl-[18px] py-3 border-gray-300 shadow-sm bg-gray-50 text-xxs font-medium"
+                  className="block h-10 w-full border-gray-300 bg-gray-50 py-3 pl-[18px] text-xxs font-medium shadow-sm"
                   placeholder="Geen titel"
                   {...methods.register("title", { required: true })}
                 />
@@ -55,9 +60,9 @@ export function FormCard() {
               <div className="mt-[7px]">
                 <textarea
                   id="content"
-                  className="block w-full h-[214px] border-gray-300 shadow-sm bg-gray-50 sm:text-sm"
-                  defaultValue={''}
-                  {...methods.register("content", { required: true})}
+                  className="block h-[214px] w-full border-gray-300 bg-gray-50 shadow-sm sm:text-sm"
+                  defaultValue={""}
+                  {...methods.register("content", { required: true })}
                 />
               </div>
             </div>
@@ -67,14 +72,13 @@ export function FormCard() {
           <div className="flex flex-col items-center">
             <button
               type="submit"
-              className="h-8 w-48 mt-6 rounded-[18px] border border-transparent bg-orange text-xxs text-white shadow-sm"
+              className="border-transparent mt-6 h-8 w-48 rounded-[18px] border bg-orange text-xxs text-white shadow-sm"
             >
               Bericht aanmaken
             </button>
           </div>
-
-      </form>
-    </FormProvider>
+        </form>
+      </FormProvider>
     </div>
   );
 }

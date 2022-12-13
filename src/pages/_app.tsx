@@ -1,11 +1,14 @@
 import { type AppType } from "next/dist/shared/lib/utils";
 
 import "../styles/globals.css";
-import localFont from '@next/font/local';
+import localFont from "@next/font/local";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const proxima = localFont({ src: '../fonts/Proxima Nova Font.otf', variable: '--font-proxima',});
-const queryClient = new QueryClient()
+const proxima = localFont({
+  src: "../fonts/Proxima Nova Font.otf",
+  variable: "--font-proxima",
+});
+const queryClient = new QueryClient();
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -14,7 +17,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <Component {...pageProps} />
       </main>
     </QueryClientProvider>
-    );
+  );
 };
 
 export default MyApp;
