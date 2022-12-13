@@ -1,4 +1,17 @@
+import type { UseQueryResult } from "@tanstack/react-query";
+import type { ReactNode } from "react";
 import type { translations } from "./utils/dictionary";
+
+export type Categories = {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export type HeroChildren = {
+  children?: ReactNode;
+};
 
 export type Post = {
   id: number;
@@ -39,3 +52,17 @@ export type Link = {
   label: keyof typeof translations & "...";
   active: boolean;
 };
+
+export type NavItem = {
+  name: string;
+  href: string;
+};
+
+export type PageButton = {
+  addPage: () => void;
+};
+
+export type Props = UseQueryResult<{
+  data: Post[];
+  links: Link[];
+}>;

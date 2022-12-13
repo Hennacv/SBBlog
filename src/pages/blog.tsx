@@ -9,10 +9,11 @@ import { Pagination } from "../components/Pagination";
 import { Title } from "../components/Title";
 import { usePosts } from "../hooks/getPosts";
 import { useRouter } from "next/router";
+import type { ParsedUrlQuery } from "querystring";
 
-function getCurrentPage(query: any) {
+function getCurrentPage(query: ParsedUrlQuery) {
   if (
-    query.hasOwnProperty("page") &&
+    query.page &&
     !Array.isArray(query.page) &&
     !isNaN(parseInt(query.page))
   ) {
@@ -37,7 +38,7 @@ const About: NextPage = () => {
         <div className="relative ">
           <div className="mx-auto w-full bg-gray-100">
             <Hero>
-              <div className="absolute left-5 top-3 w-44 sm:left-[42px] sm:top-6 sm:w-full">
+              <div className="absolute left-5 top-3 w-44 sm:left-[42px] sm:top-6 md:w-full">
                 <Logo />
               </div>
               <NavList />
@@ -46,12 +47,8 @@ const About: NextPage = () => {
             <div className="p-6 xs:p-[49.5px]">
               <div className="h-fit bg-white p-6">
                 <div className="grid justify-items-center gap-6 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                  {/* @ts-ignore */}
                   <PostList {...posts} />
                 </div>
-                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                {/* @ts-ignore */}
                 <Pagination {...posts} />
               </div>
             </div>

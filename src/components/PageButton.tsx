@@ -1,6 +1,4 @@
-type PageButton = {
-  addPage: () => void;
-};
+import type { PageButton } from "../types";
 
 export function PageButton({ addPage }: PageButton) {
   return (

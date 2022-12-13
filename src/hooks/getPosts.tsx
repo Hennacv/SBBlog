@@ -10,6 +10,11 @@ type QueryProps = {
 const TOKEN = process.env.NEXT_PUBLIC_BLOG_TOKEN;
 const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT;
 
+const initData = {
+  data: [],
+  links: [],
+};
+
 const getPosts = async ({
   pageCount = 1,
   itemCount,
@@ -31,6 +36,7 @@ export const usePosts = ({ pageCount = 1, itemCount }: PostsRequest) =>
     [`posts-${pageCount}`],
     () => getPosts({ pageCount, itemCount }),
     {
+      initialData: initData,
       refetchOnWindowFocus: false,
     },
   );

@@ -1,10 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-type NavItem = {
-  name: string;
-  href: string;
-};
+import type { NavItem } from "../types";
 
 const navigation: NavItem[] = [
   {

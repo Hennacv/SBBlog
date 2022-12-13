@@ -1,8 +1,10 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { CategoryDropdown } from "./CategoryDropdown";
 import { ImageUpload } from "./ImageUpload";
-import { useBlogPost } from "../hooks/useBlogPost";
-import type { FormArticle } from "../types";
+import { useBlogPost } from "../../hooks/useBlogPost";
+import type { FormArticle } from "../../types";
+import { Content } from "./Content";
+import { PostTitle } from "./PostTitle";
 
 export function FormCard() {
   const updateBlogPost = useBlogPost();
@@ -19,6 +21,7 @@ export function FormCard() {
       formData.append("image", singleImage, "my-image");
       updateBlogPost.mutate(formData);
     }
+    methods.reset();
   };
 
   return (
@@ -33,39 +36,13 @@ export function FormCard() {
           </h3>
           <div className="grid grid-cols-6 gap-y-6">
             {/* Berichtnaam */}
-            <div className="col-span-6">
-              <label className="block text-xxs font-medium text-gray-700">
-                Berichtnaam
-              </label>
-              <div className="mt-[7px]">
-                <input
-                  type="text"
-                  id="title"
-                  autoComplete="title"
-                  className="block h-10 w-full border-gray-300 bg-gray-50 py-3 pl-[18px] text-xxs font-medium shadow-sm"
-                  placeholder="Geen titel"
-                  {...methods.register("title", { required: true })}
-                />
-              </div>
-            </div>
+            <PostTitle />
             {/* Categorie */}
             <CategoryDropdown />
             {/* Afbeelding */}
             <ImageUpload />
             {/* Bericht */}
-            <div className="col-span-6">
-              <label className="block text-xxs font-medium text-gray-700">
-                Bericht
-              </label>
-              <div className="mt-[7px]">
-                <textarea
-                  id="content"
-                  className="block h-[214px] w-full border-gray-300 bg-gray-50 shadow-sm sm:text-sm"
-                  defaultValue={""}
-                  {...methods.register("content", { required: true })}
-                />
-              </div>
-            </div>
+            <Content />
           </div>
 
           {/* Button */}

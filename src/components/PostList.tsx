@@ -1,16 +1,11 @@
-import type { UseQueryResult } from "@tanstack/react-query";
 import Image from "next/image";
-import type { Post, Link } from "../types";
+import type { Post } from "../types";
+import type { Props } from "../types";
 
 const apiEndpoint = process.env.NEXT_PUBLIC_HOSTNAME;
 
-type Props = UseQueryResult<{
-  isLoading: boolean;
-  isError: boolean;
-  error: Error;
-  data: Post[];
-  links: Link[];
-}>;
+const isPosts = (arr: unknown): arr is Post =>
+  Array.isArray(arr) && arr[0].hasOwnProperty("title");
 
 export function PostList({ isLoading, isError, data, error }: Props) {
   if (isLoading) {
@@ -21,9 +16,9 @@ export function PostList({ isLoading, isError, data, error }: Props) {
     return <span>Error: {(error as Error).message}</span>;
   }
 
-  const posts: Post[] = data.data;
-  // const links = data.links;
-  // console.log({ links })
+  const posts = data?.data;
+
+  if (!data || !isPosts(posts)) return <></>;
 
   return (
     <>

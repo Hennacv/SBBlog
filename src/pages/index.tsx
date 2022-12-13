@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { Hero } from "../components/Hero";
-import { FormCard } from "../components/FormCard";
+import { FormCard } from "../components/form/FormCard";
 import { PostList } from "../components/PostList";
 import { Logo } from "../components/Logo";
 import { NavList } from "../components/NavList";
@@ -13,6 +13,8 @@ import { usePosts } from "../hooks/getPosts";
 const Home: NextPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const posts = usePosts({ pageCount: currentPage, itemCount: 4 });
+
+  if (!posts.data) return <></>;
 
   const addPage = () => {
     setCurrentPage(currentPage + 1);
@@ -38,8 +40,6 @@ const Home: NextPage = () => {
               <FormCard />
               <div className="h-fit bg-white p-6">
                 <div className="grid justify-items-center gap-6 xs:grid-cols-2">
-                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                  {/* @ts-ignore */}
                   <PostList {...posts} />
                 </div>
                 <PageButton addPage={addPage} />

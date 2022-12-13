@@ -3,11 +3,12 @@ import ky from "ky";
 import type { Post } from "../types";
 
 const TOKEN = process.env.NEXT_PUBLIC_BLOG_TOKEN;
+const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT;
 
 const updateBlogPosts = async (data: FormData): Promise<Post> => {
   console.log("INSIDE KY", data, { dataTobeparswed: { ...data } });
   return await ky
-    .post("https://frontend-case-api.sbdev.nl/api/posts", {
+    .post(`${ENDPOINT}/posts`, {
       body: data,
       headers: { token: TOKEN },
     })

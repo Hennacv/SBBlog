@@ -1,21 +1,14 @@
 import Link from "next/link";
-import type { UseQueryResult } from "@tanstack/react-query";
-import type { Link as LinkType } from "../types";
+import type { Link as LinkType, Props } from "../types";
 import { translations } from "../utils/dictionary";
 import { useRouter } from "next/router";
 import { FiArrowRight } from "react-icons/fi";
 
-type Props = UseQueryResult<{
-  isLoading: boolean;
-  isError: boolean;
-  error: Error;
-  links: LinkType[];
-  // pageCount: number;
-}>;
+const isLinks = (arr: unknown): arr is LinkType =>
+  Array.isArray(arr) && arr[0].hasOwnProperty("active");
 
 export function Pagination({ isLoading, isError, data, error }: Props) {
   const router = useRouter();
-  console.log({ router });
 
   if (isLoading) {
     return <span>Be patient please...</span>;
@@ -26,11 +19,13 @@ export function Pagination({ isLoading, isError, data, error }: Props) {
   }
 
   const links = data.links;
-  // const pageCount = data.pageCount;
+
+  if (!links || !isLinks(links)) return <></>;
 
   return (
     <div className="flex flex-row items-center justify-center gap-2 pt-[36.5px] pb-[9.5px]">
       {links.map((link, i, { length }) => {
+        // for the ... in the array
         if (link.label === "...") {
           return (
             <div key={link.label} className=" text-xxs text-gray-600">
@@ -43,10 +38,12 @@ export function Pagination({ isLoading, isError, data, error }: Props) {
           );
         }
 
+        // if there's not url don't retun anything
         if (!link.url) return null;
 
         const href = `${router.pathname}?${link.url.split("?")[1]}`;
 
+        // Picking last item in array to add specific style
         if (i + 1 === length) {
           return (
             <Link key={link.label} href={href}>
@@ -66,6 +63,7 @@ export function Pagination({ isLoading, isError, data, error }: Props) {
           );
         }
 
+        // number of page has different styling
         return (
           <Link key={link.label} href={href}>
             <div

@@ -1,9 +1,7 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { HeroChildren } from "../types";
 
-type HeroChildren = {
-  children?: ReactNode;
-};
+const HOSTNAME = process.env.NEXT_PUBLIC_HOSTNAME;
 
 export function Hero({ children }: HeroChildren) {
   return (
@@ -11,7 +9,9 @@ export function Hero({ children }: HeroChildren) {
       <div className="absolute inset-0">
         <Image
           className="h-full w-full object-cover"
-          src="https://frontend-case-api.sbdev.nl/storage/images/onRWvn1rBSFFtU3hgTNiaZILMt8Zw8VYDB0wnbEI.png"
+          src={
+            HOSTNAME + "/images/onRWvn1rBSFFtU3hgTNiaZILMt8Zw8VYDB0wnbEI.png"
+          }
           alt="People playing VR"
           width={1280}
           height={500}
