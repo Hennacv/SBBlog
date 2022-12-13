@@ -1,6 +1,11 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 
-export function Hero({children}) {
+type HeroChildren = {
+    children?: ReactNode
+}
+
+export function Hero({children}: HeroChildren) {
 
     return (
         <div className="relative sm:overflow-hidden">
