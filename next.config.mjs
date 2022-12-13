@@ -16,10 +16,10 @@ const config = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'frontend-case-api.sbdev.nl',
-        port: '',
-        pathname: '/storage/**',
+        protocol: "https",
+        hostname: "frontend-case-api.sbdev.nl",
+        port: "",
+        pathname: "/storage/**",
       },
     ],
   },

@@ -8,7 +8,6 @@ type HeroChildren = {
 export function Hero({ children }: HeroChildren) {
   return (
     <div className="relative sm:overflow-hidden">
-      {/* <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100" /> */}
       <div className="absolute inset-0">
         <Image
           className="h-full w-full object-cover"
