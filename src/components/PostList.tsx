@@ -5,7 +5,7 @@ import type { Props } from "../types";
 const apiEndpoint = process.env.NEXT_PUBLIC_HOSTNAME;
 
 const isPosts = (arr: unknown): arr is Post =>
-  Array.isArray(arr) && arr[0].hasOwnProperty("title");
+  Array.isArray(arr) && arr.length > 0 && typeof arr[0].title === "string";
 
 export function PostList({ isLoading, isError, data, error }: Props) {
   if (isLoading) {

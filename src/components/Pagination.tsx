@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { FiArrowRight } from "react-icons/fi";
 
 const isLinks = (arr: unknown): arr is LinkType =>
-  Array.isArray(arr) && arr[0].hasOwnProperty("active");
+  Array.isArray(arr) && arr.length > 0 && typeof arr[0].active === "boolean";
 
 export function Pagination({ isLoading, isError, data, error }: Props) {
   const router = useRouter();
